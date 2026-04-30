@@ -3,135 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rel's Pro Arcade</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <title>Rel | Projects Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
     
     <style>
-        /* THE PRO STYLING */
+        :root {
+            --primary: #8a2be2; /* Deep Purple */
+            --secondary: #00ffff; /* Cyber Cyan */
+            --bg: #050505; /* Pitch Black */
+            --card-bg: rgba(20, 20, 25, 0.6); /* Glassy dark gray */
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
-            background-color: #0b0c10;
-            background-image: radial-gradient(circle at top, #1f2833 0%, #0b0c10 100%);
-            color: #ffffff;
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 🌟 Animated Glowing Orbs in the Background */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: rgba(138, 43, 226, 0.3); }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: rgba(0, 255, 255, 0.2); animation-delay: -5s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
         header {
             text-align: center;
-            padding: 60px 20px;
-            background: rgba(11, 12, 16, 0.8);
-            border-bottom: 1px solid #45a29e;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+            padding: 100px 20px 60px;
         }
 
         h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            color: #66fcf1;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5), 0 0 20px rgba(102, 252, 241, 0.3);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            /* Gradient Holographic Text */
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: -2px;
         }
 
         p.subtitle {
-            color: #c5c6c7;
+            color: #a0a0a0;
             font-size: 1.2rem;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .arcade-grid {
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 50px 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 0 auto 100px;
         }
 
-        .game-card {
-            background: #1f2833;
-            border-radius: 12px;
+        /* 🧊 Glassmorphism Cards */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid #2b3542;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .game-card:hover {
-            transform: translateY(-10px);
-            border-color: #66fcf1;
-            box-shadow: 0 15px 30px rgba(102, 252, 241, 0.2);
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.15);
         }
 
-        .game-image {
+        .project-image {
             width: 100%;
-            height: 180px;
-            background-color: #2b3542;
+            height: 200px;
+            background: linear-gradient(45deg, #1a1a24, #2a2a35);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #45a29e;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            border-bottom: 2px solid #0b0c10;
+            color: #555;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .game-info {
-            padding: 25px;
+        /* Shine effect on hover */
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
         }
 
-        .game-info h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: #ffffff;
+        .project-card:hover .project-image::after {
+            left: 150%;
         }
 
-        .game-info p {
-            color: #c5c6c7;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 25px;
+        .project-info { padding: 30px; }
+
+        .project-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
         }
 
-        .play-btn {
+        .project-info p {
+            color: #b3b3b3;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* 🚀 Advanced Button Hover */
+        .launch-btn {
             display: block;
             text-align: center;
-            background: linear-gradient(90deg, #45a29e 0%, #66fcf1 100%);
-            color: #0b0c10;
+            background: transparent;
+            color: var(--secondary);
             text-decoration: none;
-            padding: 12px 20px;
-            border-radius: 6px;
+            padding: 15px 20px;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .launch-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--secondary);
+            z-index: -1;
             transition: all 0.3s ease;
         }
 
-        .play-btn:hover {
-            box-shadow: 0 0 15px rgba(102, 252, 241, 0.6);
-            color: #ffffff;
-        }
+        .launch-btn:hover::before { width: 100%; }
+        .launch-btn:hover { color: #000; box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); }
+
     </style>
 </head>
 <body>
 
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
     <header>
-        <h1>Rel's Arcade</h1>
-        <p class="subtitle">Next-Gen Web Games</p>
+        <h1>Rel The Creator</h1>
+        <p class="subtitle">Projects & Portfolio</p>
     </header>
 
-    <div class="arcade-grid">
+    <div class="project-grid">
         
-        <div class="game-card">
-            <div class="game-image">IMAGE PLACEHOLDER</div> 
-            <div class="game-info">
-                <h3>My Epic Game</h3>
-                <p>This is where you write a cool, short description of your game to hype it up.</p>
-                <a href="#" class="play-btn">LAUNCH GAME</a>
+        <div class="project-card">
+            <div class="project-image">IMAGE GOES HERE</div> 
+            <div class="project-info">
+                <h3>Project Zero</h3>
+                <p>A brief description of what this project is, how it works, and why it's awesome.</p>
+                <a href="#" class="launch-btn">VIEW PROJECT</a>
             </div>
         </div>
         </div>
