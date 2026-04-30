@@ -3,260 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rel The Creator | Official Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>Rel The Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ==========================================================================
-           1. GLOBAL VARIABLES & RESET
-           ========================================================================== */
+        /* MINIMALIST STYLING */
         :root {
-            --primary: #8a2be2; 
-            --secondary: #00ffff; 
-            --bg: #07070a; 
-            --surface: rgba(25, 25, 35, 0.7); 
-            --text-main: #ffffff;
-            --text-muted: #a0a0b0;
+            --bg: #fafafa;
+            --text: #111111;
+            --gray: #777777;
+            --border: #eaeaea;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body {
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
+            color: var(--text);
+            max-width: 700px; /* Keeps the text from stretching too far */
+            margin: 0 auto;
+            padding: 80px 20px;
             line-height: 1.6;
         }
 
-        /* Animated Background Gradients */
-        .bg-glow {
-            position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(150px); z-index: -1; animation: pulse 12s infinite alternate;
-        }
-        .glow-1 { top: -10%; left: -10%; background: rgba(138, 43, 226, 0.2); }
-        .glow-2 { bottom: -10%; right: -10%; background: rgba(0, 255, 255, 0.15); animation-delay: -6s; }
-
-        @keyframes pulse {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.2) translate(50px, 50px); }
-        }
-
-        /* ==========================================================================
-           2. NAVIGATION BAR
-           ========================================================================== */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(7, 7, 10, 0.8); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-main); text-decoration: none; letter-spacing: 2px;}
-        .logo span { color: var(--secondary); }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; transition: 0.3s; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;}
-        .nav-links a:hover { color: var(--secondary); text-shadow: 0 0 10px var(--secondary); }
-
-        /* ==========================================================================
-           3. HERO SECTION (TOP OF PAGE)
-           ========================================================================== */
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;
-        }
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.1;
-            background: linear-gradient(to right, var(--secondary), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero p { font-size: 1.5rem; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
-        .hero-btns { display: flex; gap: 20px; }
+        header { margin-bottom: 60px; }
         
-        .btn {
-            padding: 15px 35px; border-radius: 8px; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+        h1 { 
+            font-size: 2.5rem; 
+            font-weight: 600; 
+            letter-spacing: -1px; 
+            margin-bottom: 10px; 
         }
-        .btn-primary { background: var(--secondary); color: var(--bg); box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(0, 255, 255, 0.6); }
-        .btn-outline { border: 2px solid var(--primary); color: var(--text-main); }
-        .btn-outline:hover { background: var(--primary); transform: translateY(-3px); }
-
-        /* ==========================================================================
-           4. SKILLS SECTION
-           ========================================================================== */
-        .section-title { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; text-align: center; margin-bottom: 50px; }
-        .section-title span { color: var(--primary); }
         
-        .skills { padding: 100px 20px; max-width: 1000px; margin: 0 auto; }
-        .skills-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .skill-tag {
-            background: var(--surface); padding: 15px 30px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
-            font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; transition: 0.3s;
+        header p { 
+            color: var(--gray); 
+            font-size: 1.1rem; 
         }
-        .skill-tag:hover { border-color: var(--secondary); color: var(--secondary); transform: scale(1.05); }
-
-        /* ==========================================================================
-           5. MASSIVE PROJECT GRID
-           ========================================================================== */
-        .projects { padding: 100px 20px; background: rgba(0,0,0,0.3); }
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; }
         
-        .project-card {
-            background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; overflow: hidden;
-            backdrop-filter: blur(20px); transition: 0.4s; position: relative;
+        h2 { 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            color: var(--gray); 
+            border-bottom: 1px solid var(--border); 
+            padding-bottom: 15px; 
+            margin-bottom: 30px; 
         }
-        .project-card:hover { transform: translateY(-10px); border-color: var(--secondary); box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1); }
         
-        .project-image { width: 100%; height: 250px; background: #111; display: flex; align-items: center; justify-content: center; color: #444; font-size: 1.2rem; }
-        .project-info { padding: 30px; }
-        .project-tag { background: rgba(138, 43, 226, 0.2); color: #d896ff; padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px; }
+        /* The Project List */
+        .project { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 25px 0; 
+            border-bottom: 1px solid var(--border); 
+            transition: opacity 0.2s; 
+        }
         
-        .project-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; margin-bottom: 15px; }
-        .project-info p { color: var(--text-muted); margin-bottom: 25px; line-height: 1.5; }
+        .project:hover { opacity: 0.6; }
         
-        .project-links { display: flex; gap: 15px; }
-        .play-btn { background: transparent; color: var(--secondary); border: 1px solid var(--secondary); padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 700; transition: 0.3s; width: 100%; text-align: center; }
-        .play-btn:hover { background: var(--secondary); color: var(--bg); }
-
-        /* ==========================================================================
-           6. FOOTER
-           ========================================================================== */
-        footer { text-align: center; padding: 60px 20px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px; }
-        footer h2 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px; }
-        footer p { color: var(--text-muted); }
-
-        /* JS Animation Classes */
-        .hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .show { opacity: 1; transform: translateY(0); }
+        .project-info h3 { 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            margin-bottom: 4px; 
+        }
+        
+        .project-info p { 
+            color: var(--gray); 
+            font-size: 0.95rem; 
+        }
+        
+        /* Clean Button */
+        .play-link { 
+            text-decoration: none; 
+            color: var(--text); 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            border: 1px solid var(--text); 
+            padding: 8px 16px; 
+            border-radius: 4px; 
+            transition: all 0.2s; 
+        }
+        
+        .play-link:hover { 
+            background: var(--text); 
+            color: var(--bg); 
+        }
+        
+        footer { 
+            margin-top: 80px; 
+            color: var(--gray); 
+            font-size: 0.85rem; 
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow glow-1"></div>
-    <div class="bg-glow glow-2"></div>
+    <header>
+        <h1>Rel The Creator</h1>
+        <p>Game Developer & Designer. Building things for the web.</p>
+    </header>
 
-    <nav>
-        <a href="#" class="logo">REL<span>CREATOR</span></a>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-        </div>
-    </nav>
-
-    <section id="home" class="hero hidden">
-        <h1>BUILDING WORLDS<br>LINE BY LINE</h1>
-        <p>I am Rel. I create next-level games, interactive experiences, and digital art. Welcome to my personal hub.</p>
-        <div class="hero-btns">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="#skills" class="btn btn-outline">My Arsenal</a>
-        </div>
-    </section>
-
-    <section id="skills" class="skills hidden">
-        <h2 class="section-title">MY <span>ARSENAL</span></h2>
-        <div class="skills-grid">
-            <div class="skill-tag">Game Design</div>
-            <div class="skill-tag">Level Building</div>
-            <div class="skill-tag">JavaScript</div>
-            <div class="skill-tag">HTML5 / CSS3</div>
-            <div class="skill-tag">Pixel Art</div>
-            <div class="skill-tag">Logic Systems</div>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <h2 class="section-title">THE <span>ARCHIVE</span></h2>
+    <main>
+        <h2>Selected Projects</h2>
         
-        <div class="project-grid">
-            
-            <div class="project-card hidden">
-                <div class="project-image">IMAGE 1</div>
-                <div class="project-info">
-                    <span class="project-tag">Action RPG</span>
-                    <h3>Bluekit</h3>
-                    <p>A fast-paced cyberpunk action game where you slice through corrupted mainframes. Built from the ground up with custom physics.</p>
-                    <div class="project-links">
-                        <a href="#" class="play-btn">LAUNCH PROJECT</a>
-                    </div>
-                </div>
+        <div class="project">
+            <div class="project-info">
+                <h3>Bluekit</h3>
+                <p>My very first game hosted on the arcade.</p>
             </div>
-
-            <div class="project-card hidden">
-                <div class="project-image">IMAGE 2</div>
-                <div class="project-info">
-                    <span class="project-tag">Puzzle</span>
-                    <h3>Quantum Shift</h3>
-                    <p>Bend space and time to solve intricate room-scale puzzles. Features a dynamic gravity system and original synthwave soundtrack.</p>
-                    <div class="project-links">
-                        <a href="#" class="play-btn">LAUNCH PROJECT</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card hidden">
-                <div class="project-image">IMAGE 3</div>
-                <div class="project-info">
-                    <span class="project-tag">Platformer</span>
-                    <h3>Skybound</h3>
-                    <p>A precision platformer set in the clouds. How high can you climb before the storm catches you?</p>
-                    <div class="project-links">
-                        <a href="#" class="play-btn">LAUNCH PROJECT</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card hidden">
-                <div class="project-image">IMAGE 4</div>
-                <div class="project-info">
-                    <span class="project-tag">Multiplayer</span>
-                    <h3>Arena X</h3>
-                    <p>A top-down battle arena for you and 3 friends. Dodge, shoot, and survive.</p>
-                    <div class="project-links">
-                        <a href="#" class="play-btn">LAUNCH PROJECT</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card hidden">
-                <div class="project-image">IMAGE 5</div>
-                <div class="project-info">
-                    <span class="project-tag">Web App</span>
-                    <h3>Stat Tracker</h3>
-                    <p>A custom tool I built to track high scores and speedrun times across all my games automatically.</p>
-                    <div class="project-links">
-                        <a href="#" class="play-btn">LAUNCH PROJECT</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-card hidden">
-                <div class="project-image">IMAGE 6</div>
-                <div class="project-info">
-                    <span class="project-tag">Experimental</span>
-                    <h3>The Void</h3>
-                    <p>An interactive narrative experience. Don't look behind you.</p>
-                    <div class="project-links">
-                        <a href="#" class="play-btn">LAUNCH PROJECT</a>
-                    </div>
-                </div>
-            </div>
-
+            <a href="https://relthecreator.github.io/bluekit/" class="play-link">Play</a>
         </div>
-    </section>
 
-    <footer class="hidden">
-        <h2>READY TO PLAY?</h2>
-        <p>All projects built and maintained by RelTheCreator.</p>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">Hosted on GitHub Pages</p>
+        <div class="project">
+            <div class="project-info">
+                <h3>Project Two</h3>
+                <p>In development...</p>
+            </div>
+            <a href="#" class="play-link">Play</a>
+        </div>
+        
+        <div class="project">
+            <div class="project-info">
+                <h3>Project Three</h3>
+                <p>In development...</p>
+            </div>
+            <a href="#" class="play-link">Play</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 Rel The Creator.</p>
     </footer>
 
-    <script>
-        // This script makes the sections smoothly fade in as you scroll down
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach((el) => observer.observe(el));
-    </script>
 </body>
 </html>
